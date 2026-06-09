@@ -473,11 +473,11 @@ const App: React.FC = () => {
           </div>
 
           {/* Right Side: Copyright & Scroll */}
-          <div className="flex flex-col items-center md:items-end gap-2 text-sm text-gray-400">
+          <div className="flex flex-col items-center md:items-end gap-2 text-sm text-white-400">
             <p>&copy; {new Date().getFullYear()} Nelson Kimaiga. All Rights Reserved.</p>
             <button
               onClick={scrollToTop}
-              className="text-xs uppercase tracking-widest text-gray-500 hover:text-[#7afbc4] transition-colors flex items-center gap-2"
+              className="text-xs uppercase tracking-widest text-white-400 hover:text-[#7afbc4] transition-colors flex items-center gap-2"
             >
               Back to top <ArrowUp size={12} />
             </button>
