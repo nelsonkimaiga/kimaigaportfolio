@@ -26,6 +26,7 @@ interface Project {
   description: string;
   imageUrl: string;
   link: string;
+  stack: string[];
 }
 
 interface Skill {
@@ -37,11 +38,51 @@ interface Skill {
 }
 
 const PROJECTS: Project[] = [
-  { id: 1, title: 'DOCUBOX', category: 'websitework', description: 'Web development', imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400', link: 'https://mydocubox.org/' },
-  { id: 2, title: 'Good Financial Grant Practice', category: 'websitework', description: 'Web development', imageUrl: 'https://images.unsplash.com/photo-1454165833767-027ffea89c17?auto=format&fit=crop&q=80&w=400', link: 'https://gfgp.ai' },
-  { id: 3, title: 'Open Research Africa', category: 'websitework', description: 'Back-end web development', imageUrl: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=400', link: 'https://openresearchafrica.org/' },
-  { id: 4, title: 'D3 PlayGround', category: 'websitework', description: 'Data Visualization', imageUrl: 'https://images.unsplash.com/photo-1551288049-bbda38a594a0?auto=format&fit=crop&q=80&w=400', link: 'http://nelsonkimaiga.github.io/D3Graphs/' },
-  { id: 5, title: 'Addis Ababa University', category: 'websitework', description: 'Back-end web development', imageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=400', link: 'https://www.aau.edu.et/' },
+  { 
+    id: 1, 
+    title: 'DOCUBOX', 
+    category: 'websitework', 
+    description: 'Digital Archiving System', 
+    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400', 
+    link: 'https://mydocubox.org/',
+    stack: ['React', 'Node.js', 'PostgreSQL']
+  },
+  { 
+    id: 2, 
+    title: 'Good Financial Grant Practice', 
+    category: 'websitework', 
+    description: 'Grant Management Platform', 
+    imageUrl: 'https://images.unsplash.com/photo-1454165833767-027ffea89c17?auto=format&fit=crop&q=80&w=400', 
+    link: 'https://gfgp.ai',
+    stack: ['Angular', 'Spring Boot', 'MySQL']
+  },
+  { 
+    id: 3, 
+    title: 'Open Research Africa', 
+    category: 'websitework', 
+    description: 'Scientific Publishing Platform', 
+    imageUrl: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=400', 
+    link: 'https://openresearchafrica.org/',
+    stack: ['Java', 'React', 'ElasticSearch']
+  },
+  { 
+    id: 4, 
+    title: 'D3 PlayGround', 
+    category: 'websitework', 
+    description: 'Interactive Data Visualizations', 
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bbda38a594a0?auto=format&fit=crop&q=80&w=400', 
+    link: 'http://nelsonkimaiga.github.io/D3Graphs/',
+    stack: ['D3.js', 'JavaScript', 'SVG']
+  },
+  { 
+    id: 5, 
+    title: 'Addis Ababa University', 
+    category: 'websitework', 
+    description: 'Academic Management Portal', 
+    imageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=400', 
+    link: 'https://www.aau.edu.et/',
+    stack: ['Python', 'Django', 'PostgreSQL']
+  },
 ];
 
 const SKILLS: Skill[] = [
@@ -227,16 +268,49 @@ const App: React.FC = () => {
             My Portfolio
           </h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {PROJECTS.map((project) => (
-              <div key={project.id} className="group relative overflow-hidden bg-white rounded-lg shadow-xl aspect-video cursor-pointer">
-                <img src={project.imageUrl} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-[#00196F]/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 text-center">
-                  <h4 className="text-white text-xl font-bold uppercase mb-2">{project.title}</h4>
-                  <p className="text-gray-300 text-sm mb-6">{project.description}</p>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-auto w-full py-3 bg-[#7afbc4] text-[#00196F] font-bold rounded flex items-center justify-center gap-2 hover:bg-white transition-colors">
-                    View Project <ExternalLink className="w-4 h-4" />
-                  </a>
+              <div key={project.id} className="group flex flex-col bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                {/* Image Container */}
+                <div className="relative aspect-video overflow-hidden">
+                  <img 
+                    src={project.imageUrl} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                  />
+                  {/* Hover Button Overlay */}
+                  <div className="absolute inset-0 bg-[#00196F]/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="px-6 py-2 bg-[#7afbc4] text-[#00196F] font-bold rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 flex items-center gap-2"
+                    >
+                      View Project <ExternalLink size={16} />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Content Area */}
+                <div className="p-6 flex flex-col text-left">
+                  <h4 className="text-lg font-bold text-[#00196F] uppercase mb-1">
+                    {project.title}
+                  </h4>
+                  <p className="text-gray-500 text-sm mb-4">
+                    {project.description}
+                  </p>
+                  
+                  {/* Tech Stack Badges */}
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.stack.map((tech) => (
+                      <span 
+                        key={tech} 
+                        className="px-2 py-1 bg-slate-100 rounded-full text-xs font-semibold text-[#00196F]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
