@@ -397,7 +397,7 @@ const App: React.FC = () => {
                 <div className="p-3 bg-white rounded-lg shadow-sm">
                   <Mail className="text-[#36B693] w-6 h-6" />
                 </div>
-                <p>hello@nelsonkimaiga.com</p>
+                <p><a href="mailto:hello@nelsonkimaiga.com" className="text-[#00196F] hover:underline">hello@nelsonkimaiga.com</a></p>
               </div>
             </div>
 
