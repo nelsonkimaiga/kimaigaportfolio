@@ -32,7 +32,7 @@ const BlogComingSoon: React.FC = () => {
       </div>
 
       {/* Brand */}
-      <a href="/" className="absolute top-8 left-8 z-10" aria-label="Nelson Kimaiga">
+      <a href={MAIN_SITE_URL} className="absolute top-8 left-8 z-10" aria-label="Nelson Kimaiga">
         <div className="w-12 h-12 rounded-full border-2 border-[#7afbc4] overflow-hidden bg-white">
           <img
             src="https://ui-avatars.com/api/?name=Nelson+Kimaiga&background=00196F&color=7afbc4"
@@ -58,10 +58,17 @@ const BlogComingSoon: React.FC = () => {
           Thoughts on software engineering, open source, and everything in between.
         </p>
 
-        <div className="flex items-center justify-center gap-3 text-sm text-gray-500 uppercase tracking-widest">
+        <div className="flex items-center justify-center gap-3 text-sm text-gray-500 uppercase tracking-widest mb-10">
           <span className="w-2 h-2 rounded-full bg-[#7afbc4] animate-pulse" />
           Stay tuned
         </div>
+
+        <a
+          href={MAIN_SITE_URL}
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/15 bg-white/5 text-sm font-medium text-gray-200 hover:text-[#0a0e27] hover:bg-[#7afbc4] hover:border-[#7afbc4] transition-all"
+        >
+          Back to main site <ArrowUpRight size={16} />
+        </a>
       </div>
 
       {/* Footer */}
