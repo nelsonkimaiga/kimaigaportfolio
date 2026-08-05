@@ -45,28 +45,46 @@ const PROJECTS: Project[] = [
     description: 'Property Management Platform',
     imageUrl: 'https://www.waragahenterprise.co.ke/android-chrome-512x512.png',
     link: 'https://www.waragahenterprise.co.ke/',
-    stack: ['React', 'JavaScript', 'REST API']
+    stack: ['React', 'Spring Boot', 'Daraja REST API']
   },
   {
     id: 2,
+    title: '4MESHEN',
+    category: 'websitework',
+    description: 'Events Management & Ticketing Platform',
+    imageUrl: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80',
+    link: 'https://www.fomeshen.co.ke/',
+    stack: ['React', 'Spring Boot', 'REST API']
+  },
+  {
+    id: 3,
+    title: 'Madafu Travels',
+    category: 'websitework',
+    description: 'Boutique Safaris & Tours in East Africa',
+    imageUrl: 'https://www.madafutravels.com/madafu.png',
+    link: 'https://www.madafutravels.co.ke/',
+    stack: ['React', 'NodeJS', 'REST API']
+  },
+  {
+    id: 4,
     title: 'Good Financial Grant Practice',
     category: 'websitework',
     description: 'Grant Management Platform',
     imageUrl: 'https://gfgp.ai/img/logo.png',
     link: 'https://gfgp.ai',
-    stack: ['Angular', 'Spring Boot', 'MySQL']
+    stack: ['React', 'Spring Boot', 'MySQL']
   },
   {
-    id: 3,
+    id: 5,
     title: 'DOCUBOX',
     category: 'websitework',
     description: 'East African Documentary Film Fund',
     imageUrl: 'https://mydocubox.org/wp-content/uploads/2023/02/cropped-NEW-DOCUBOX-LOGO-VARIATIONS-15.png',
     link: 'https://mydocubox.org/',
-    stack: ['React', 'Node.js', 'PostgreSQL']
+    stack: ['React', 'PHP', 'PostgreSQL']
   },
   {
-    id: 4,
+    id: 6,
     title: 'Addis Ababa University',
     category: 'websitework',
     description: 'Academic Management Portal',
@@ -296,7 +314,7 @@ const App: React.FC = () => {
                   <img
                     src={project.imageUrl}
                     alt={project.title}
-                    className="w-full h-full object-contain bg-white p-6 transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-contain bg-white p-6 rounded-lg transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-[#00196F]/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <a
