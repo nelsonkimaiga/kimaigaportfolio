@@ -406,7 +406,7 @@ const App: React.FC = () => {
   // Scroll listener for sticky header and scroll-to-top button
   useEffect(() => {
     applySEO({
-      title: 'Nelson Kimaiga | Senior Enterprise & Systems Engineer',
+      title: 'Nelson Kimaiga | Senior Software Engineer',
       description: 'Senior software and systems engineer with 11+ years delivering production systems across fintech, InsurTech, and digital health — high-throughput backends and critical middleware.',
       robots: 'index, follow',
     });
