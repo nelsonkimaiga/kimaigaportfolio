@@ -204,14 +204,14 @@ const App: React.FC = () => {
       <li className="hover:text-[#7afbc4] transition-colors"><a href="#works" onClick={() => setIsMenuOpen(false)}>Portfolio</a></li>
       <li className="hover:text-[#7afbc4] transition-colors"><a href="#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
       <li className="hover:text-[#7afbc4] transition-colors">
-        <a href="https://rhapsody.azurewebsites.net/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>Blog</a>
+        <a href="https://blog.nelsonkimaiga.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>Blog</a>
       </li>
       <li className="hover:text-[#7afbc4] transition-colors"><a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
     </ul>
   );
 
   return (
-    <div className="font-raleway text-gray-600 antialiased overflow-x-hidden">
+    <div className="font-sans text-gray-600 antialiased overflow-x-hidden">
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-[2000] transition-all duration-500 px-6 py-4 flex justify-between items-center ${
         isSticky ? 'bg-[#00196F] py-2 shadow-lg border-b border-[#7afbc4]/20' : 'bg-transparent'
