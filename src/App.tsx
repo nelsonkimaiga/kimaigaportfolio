@@ -13,6 +13,12 @@ import {
   Menu,
   X,
   Building2,
+  Fingerprint,
+  Wallet,
+  CalendarClock,
+  Waypoints,
+  FileCheck,
+  FileSearch,
   Server,
   Database,
   Activity,
@@ -53,6 +59,15 @@ interface HealthFeature {
   title: string;
   desc: string;
   icon: LucideIcon;
+}
+
+type DomainId = 'health' | 'fintech' | 'insurtech';
+
+interface Domain {
+  id: DomainId;
+  label: string;
+  features: HealthFeature[];
+  badges: string[];
 }
 
 interface SkillCategory {
@@ -148,31 +163,83 @@ const DOMAIN_PILLS = [
   'Fintech & Payments',
 ];
 
-const HEALTH_FEATURES: HealthFeature[] = [
+const DOMAINS: Domain[] = [
   {
-    title: 'OpenMRS',
-    desc: 'Customization and production-grade EMR workflows powering clinics and national health programs across multiple deployments.',
-    icon: Activity
+    id: 'health',
+    label: 'Digital Health',
+    features: [
+      {
+        title: 'OpenMRS',
+        desc: 'Customization and production-grade EMR workflows powering clinics and national health programs across multiple deployments.',
+        icon: Activity
+      },
+      {
+        title: 'HL7 FHIR',
+        desc: 'Interoperability standards engineering — designing FHIR resources, bundles, and RESTful APIs for seamless clinical data exchange.',
+        icon: GitBranch
+      },
+      {
+        title: 'DHIS2',
+        desc: 'Surveillance and national reporting integrations enabling real-time aggregate health data for decision-making.',
+        icon: Database
+      },
+    ],
+    badges: ['HL7', 'FHIR R4', 'OpenMRS', 'DHIS2', 'OpenHIE']
   },
   {
-    title: 'HL7 FHIR',
-    desc: 'Interoperability standards engineering — designing FHIR resources, bundles, and RESTful APIs for seamless clinical data exchange.',
-    icon: GitBranch
+    id: 'fintech',
+    label: 'Fintech & Payments',
+    features: [
+      {
+        title: 'M-Pesa & Tingg Gateways',
+        desc: 'Mobile money orchestration across M-Pesa, Tingg, Airtel, and MTN MoMo — STK push, C2B and B2B flows with reliable settlement.',
+        icon: Wallet
+      },
+      {
+        title: 'Escrow Schedulers',
+        desc: 'Time-boxed escrow and settlement schedulers ensuring funds move only when transaction conditions are fully met.',
+        icon: CalendarClock
+      },
+      {
+        title: 'Banking Middleware',
+        desc: 'Integration middleware bridging core banking systems, switches, and mobile money rails through secure, auditable APIs.',
+        icon: Waypoints
+      },
+    ],
+    badges: ['M-Pesa', 'Tingg', 'Airtel', 'MTN MoMo', 'STK Push', 'C2B', 'B2B', 'Escrow', 'Settlement', 'ISO 8583']
   },
   {
-    title: 'DHIS2',
-    desc: 'Surveillance and national reporting integrations enabling real-time aggregate health data for decision-making.',
-    icon: Database
+    id: 'insurtech',
+    label: 'InsurTech',
+    features: [
+      {
+        title: 'Biometric Identity Scanning',
+        desc: 'COMPAS biometric scanning and verification powering digital identity — secure, high-volume authentication across insurance and banking.',
+        icon: Fingerprint
+      },
+      {
+        title: 'Automated Adjudication',
+        desc: 'Rules-driven adjudication engines that validate claims, detect fraud, and approve payouts automatically.',
+        icon: FileCheck
+      },
+      {
+        title: 'Provider Gateways',
+        desc: 'Hospital and provider integrations streaming pre-auths and e-claims into the claims pipeline.',
+        icon: Building2
+      },
+      {
+        title: 'Compliance Audit Logging',
+        desc: 'Immutable audit trails and compliance logging across every claim, decision, and payment event.',
+        icon: FileSearch
+      },
+      {
+        title: 'eClaims & HMIS Integrations',
+        desc: 'Electronic claims processing and HMIS integrations spanning Care2000, Kranium, and Med360 for healthcare administration.',
+        icon: ShieldCheck
+      },
+    ],
+    badges: ['Spring Boot', 'Kafka', 'Microservices', 'Claims Automation', 'Fraud Detection', 'FHIR', 'Audit Logs', 'Compliance']
   },
-  {
-    title: 'eClaims & HMIS Integrations',
-    desc: 'Electronic claims processing and HMIS integrations spanning Care2000, Kranium, and Med360 for healthcare administration.',
-    icon: ShieldCheck
-  },
-];
-
-const HEALTH_STANDARDS = [
-  'HL7', 'FHIR R4', 'OpenMRS', 'DHIS2', 'OpenHIE', 'Care2000', 'Kranium', 'Med360', 'EMR', 'HIE'
 ];
 
 const CAREER: CareerEntry[] = [
@@ -309,7 +376,10 @@ const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'enterprise' | 'web'>('enterprise');
+  const [domainTab, setDomainTab] = useState<DomainId>('health');
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
+
+  const activeDomain = DOMAINS.find((domain) => domain.id === domainTab)!;
 
   // Scroll listener for sticky header and scroll-to-top button
   useEffect(() => {
@@ -386,7 +456,7 @@ const App: React.FC = () => {
         <NavLinks />
 
         {/* Mobile Toggle */}
-        <button onClick={toggleMenu} className="md:hidden text-white p-2">
+        <button onClick={toggleMenu} className="md:hidden text-white p-2" aria-label="Toggle menu">
           {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
       </nav>
@@ -452,7 +522,7 @@ const App: React.FC = () => {
         </div>
 
         <div className="absolute bottom-6 animate-bounce">
-          <a href="#about"><ChevronDown className="text-[#2DD4BF] w-8 h-8" /></a>
+          <a href="#about" aria-label="Scroll to About"><ChevronDown className="text-[#2DD4BF] w-8 h-8" /></a>
         </div>
       </section>
 
@@ -468,7 +538,7 @@ const App: React.FC = () => {
           </p>
 
           <div className="mb-12">
-            <span className="inline-block px-8 py-3 bg-[#0D9488]/10 border border-[#0D9488]/20 text-[#0D9488] rounded font-bold uppercase tracking-widest mb-12">
+            <span className="inline-block px-6 py-2.5 bg-[#0D9488]/10 border border-[#0D9488]/20 text-[#0D9488] rounded-full font-mono text-xs uppercase tracking-widest mb-12">
               Skills & Competencies
             </span>
           </div>
@@ -539,35 +609,55 @@ const App: React.FC = () => {
       {/* Digital Health & Specialty */}
       <section id="health" className="py-24 bg-[#F4F7F6]">
         <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading eyebrow="Specialty" title="Digital Health Expertise" />
+          <SectionHeading eyebrow="Domain Expertise" title="Specialist Domains" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {HEALTH_FEATURES.map((feature) => (
-              <div
-                key={feature.title}
-                className="group bg-white border border-slate-200 shadow-sm rounded-xl p-8 transition-all duration-300 hover:shadow-md"
+          {/* Domain Tabs */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {DOMAINS.map((domain) => (
+              <button
+                key={domain.id}
+                onClick={() => setDomainTab(domain.id)}
+                aria-pressed={domainTab === domain.id}
+                className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                  domainTab === domain.id
+                    ? 'bg-[#0D9488] text-white shadow-lg shadow-[#0D9488]/20'
+                    : 'bg-white border border-slate-200 text-slate-600 hover:border-[#0D9488]/40 hover:text-[#0D9488]'
+                }`}
               >
-                <div className="w-12 h-12 rounded-xl bg-[#0D9488]/10 flex items-center justify-center mb-5 text-[#0D9488]">
-                  <feature.icon size={24} />
-                </div>
-                <h4 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h4>
-                <p className="text-sm text-slate-600 leading-relaxed">{feature.desc}</p>
-              </div>
+                {domain.label}
+              </button>
             ))}
           </div>
 
-          {/* Health Standards Badges */}
-          <div className="mt-12 text-center">
-            <p className="text-xs uppercase tracking-widest text-slate-500 mb-5 font-bold font-mono">Health Standards</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {HEALTH_STANDARDS.map((standard) => (
-                <span
-                  key={standard}
-                  className="px-4 py-2 rounded-full bg-[#0D9488]/5 border border-[#0D9488]/20 text-sm text-[#0D9488] font-medium font-mono"
+          <div key={activeDomain.id} className="animate-fadeInUp">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {activeDomain.features.map((feature) => (
+                <div
+                  key={feature.title}
+                  className="group bg-white border border-slate-200 shadow-sm rounded-xl p-8 transition-all duration-300 hover:shadow-md"
                 >
-                  {standard}
-                </span>
+                  <div className="w-12 h-12 rounded-xl bg-[#0D9488]/10 flex items-center justify-center mb-5 text-[#0D9488]">
+                    <feature.icon size={24} />
+                  </div>
+                  <h4 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed">{feature.desc}</p>
+                </div>
               ))}
+            </div>
+
+            {/* Domain Technology Badges */}
+            <div className="mt-12 text-center">
+              <p className="text-xs uppercase tracking-widest text-slate-500 mb-5 font-bold font-mono">Technology Stack</p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {activeDomain.badges.map((standard) => (
+                  <span
+                    key={standard}
+                    className="px-4 py-2 rounded-full bg-[#0D9488]/5 border border-[#0D9488]/20 text-sm text-[#0D9488] font-medium font-mono"
+                  >
+                    {standard}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -708,9 +798,9 @@ const App: React.FC = () => {
             <div className="mt-16 text-left">
               <p className="font-bold text-slate-900 uppercase tracking-wider mb-6">I am social</p>
               <div className="flex gap-8">
-                <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#0D9488] transition-colors"><Linkedin size={28} /></a>
-                <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#0D9488] transition-colors"><Github size={28} /></a>
-                <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[#0D9488] transition-colors"><XIcon size={28} /></a>
+                <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-slate-400 hover:text-[#0D9488] transition-colors"><Linkedin size={28} /></a>
+                <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-slate-400 hover:text-[#0D9488] transition-colors"><Github size={28} /></a>
+                <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="X" className="text-slate-400 hover:text-[#0D9488] transition-colors"><XIcon size={28} /></a>
               </div>
             </div>
           </div>
