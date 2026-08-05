@@ -554,7 +554,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <SectionHeading eyebrow="Profile" title="About Me" />
           <p className="max-w-4xl mx-auto text-xl md:text-2xl font-light text-gray-300 text-justify leading-relaxed mb-20">
-            I’m a <span className="text-white font-semibold">Senior Enterprise &amp; Systems Engineer</span> based in Nairobi, Kenya, with{' '}
+            I’m a <span className="text-white font-semibold">Senior Software Engineer</span> based in Nairobi, Kenya, with{' '}
             <span className="text-white font-semibold">11+ years of experience</span> building resilient web, mobile, and cloud applications. Specializing in{' '}
             <span className="text-white font-semibold">backend architectures</span>, <span className="text-white font-semibold">payment middleware</span>, and{' '}
             <span className="text-white font-semibold">digital health solutions</span>, I focus on turning complex technical challenges into scalable, production-ready platforms. When I'm not shipping code, I'm active in the open-source community and sharing technical insights on software design and architecture.
