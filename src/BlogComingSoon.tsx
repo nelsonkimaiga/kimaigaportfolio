@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Newspaper, Linkedin, Github, ArrowUpRight } from 'lucide-react';
 
 const SOCIAL_LINKS = {
@@ -24,11 +24,22 @@ const XIcon = ({ size = 20, className = '' }: { size?: number; className?: strin
 const BlogComingSoon: React.FC = () => {
   const year = new Date().getFullYear();
 
+  useEffect(() => {
+    document.title = "The Rhapsody | A developer's shenanigans";
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-[#0a0e27] text-white overflow-hidden flex flex-col items-center justify-center px-6 font-sans">
-      {/* Ambient Glow */}
-      <div className="absolute inset-0 opacity-40 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-blue-600 to-teal-400 rounded-full blur-[120px] animate-pulse" />
+      {/* Old Blog Cover */}
+      <div className="absolute inset-0 pointer-events-none">
+        <img
+          src="https://rhapsody.azurewebsites.net/content/images/2016/05/programmer.jpg"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-contain scale-105"
+        />
+        <div className="absolute inset-0 bg-[#0a0e27]/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e27]/80 via-[#0a0e27]/10 to-[#0a0e27]/90" />
       </div>
 
       {/* Brand */}
@@ -50,15 +61,17 @@ const BlogComingSoon: React.FC = () => {
           </div>
         </div>
 
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500 mb-4">Coming Soon</p>
+
         <h1 className="text-5xl md:text-7xl font-thin uppercase tracking-tight mb-6">
-          Coming <span className="text-[#7afbc4]">Soon</span>
+          The <span className="text-[#7afbc4]">Rhapsody</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-400 font-light leading-relaxed mb-12">
-          Thoughts on software engineering, open source, and everything in between.
+        <p className="text-lg md:text-xl text-white/90 font-light leading-relaxed mb-12">
+          A developer's shenanigans.
         </p>
 
-        <div className="flex items-center justify-center gap-3 text-sm text-gray-500 uppercase tracking-widest mb-10">
+        <div className="flex items-center justify-center gap-3 text-sm font-medium text-white uppercase tracking-widest mb-10">
           <span className="w-2 h-2 rounded-full bg-[#7afbc4] animate-pulse" />
           Stay tuned
         </div>
