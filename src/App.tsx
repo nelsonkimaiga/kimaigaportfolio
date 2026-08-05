@@ -17,11 +17,19 @@ import {
   Wallet,
   CalendarClock,
   Waypoints,
+  Cloud,
+  Code2,
+  Terminal,
+  Users,
+  Circle,
+  HardHat,
   FileCheck,
   FileSearch,
   Server,
   Database,
   Activity,
+  History,
+  Archive,
   ShieldCheck,
   GitBranch,
   Layers,
@@ -53,6 +61,7 @@ interface CareerEntry {
   role: string;
   company: string;
   tags?: string[];
+  status: 'current' | 'recent' | 'past';
 }
 
 interface HealthFeature {
@@ -72,6 +81,7 @@ interface Domain {
 
 interface SkillCategory {
   title: string;
+  icon: LucideIcon;
   skills: string[];
 }
 
@@ -135,7 +145,7 @@ const PROJECTS: Project[] = [
 const ENTERPRISE_CASES: EnterpriseCase[] = [
   {
     title: 'Claims Validation Switch',
-    summary: 'Event-driven claims adjudication switch orchestrating validation, fraud checks, and approvals across providers, hospitals, and payers.',
+    summary: 'Event-driven claims adjudication switch handling validation, fraud checks, and approvals across providers, hospitals, and payers.',
     stack: ['Spring Boot', 'Kafka', 'Microservices', 'FHIR'],
     flow: ['Hospital EMR', 'Claims API', 'Validation Engine', 'Adjudication', 'Payments'],
     icon: Layers
@@ -149,7 +159,7 @@ const ENTERPRISE_CASES: EnterpriseCase[] = [
   },
   {
     title: 'Health Information Exchange',
-    summary: 'FHIR-based interoperability gateway connecting EMRs, national surveillance systems (DHIS2), and hospital platforms for seamless data exchange and reporting.',
+    summary: 'FHIR-based interoperability gateway connecting EMRs, national surveillance systems (DHIS2), and hospital platforms for standardized data exchange and reporting.',
     stack: ['HL7 FHIR', 'Spring Boot', 'OpenMRS', 'DHIS2'],
     flow: ['EMR', 'FHIR Gateway', 'Spring Boot APIs', 'OpenMRS / DHIS2'],
     icon: Database
@@ -157,7 +167,6 @@ const ENTERPRISE_CASES: EnterpriseCase[] = [
 ];
 
 const DOMAIN_PILLS = [
-  '11+ Years Experience',
   'InsurTech',
   'Digital Health',
   'Fintech & Payments',
@@ -170,12 +179,12 @@ const DOMAINS: Domain[] = [
     features: [
       {
         title: 'OpenMRS',
-        desc: 'Customization and production-grade EMR workflows powering clinics and national health programs across multiple deployments.',
+        desc: 'Production-grade EMR customization supporting clinics and national health programs across multiple deployments.',
         icon: Activity
       },
       {
         title: 'HL7 FHIR',
-        desc: 'Interoperability standards engineering — designing FHIR resources, bundles, and RESTful APIs for seamless clinical data exchange.',
+        desc: 'Interoperability standards engineering — designing FHIR resources, bundles, and RESTful APIs for standardized clinical data exchange.',
         icon: GitBranch
       },
       {
@@ -192,7 +201,7 @@ const DOMAINS: Domain[] = [
     features: [
       {
         title: 'M-Pesa & Tingg Gateways',
-        desc: 'Mobile money orchestration across M-Pesa, Tingg, Airtel, and MTN MoMo — STK push, C2B and B2B flows with reliable settlement.',
+        desc: 'Mobile money integration across M-Pesa, Tingg, Airtel, and MTN MoMo — STK push, C2B and B2B flows with reliable settlement.',
         icon: Wallet
       },
       {
@@ -214,7 +223,7 @@ const DOMAINS: Domain[] = [
     features: [
       {
         title: 'Biometric Identity Scanning',
-        desc: 'COMPAS biometric scanning and verification powering digital identity — secure, high-volume authentication across insurance and banking.',
+        desc: 'COMPAS biometric scanning and verification for digital identity — high-volume authentication across insurance and banking.',
         icon: Fingerprint
       },
       {
@@ -247,76 +256,90 @@ const CAREER: CareerEntry[] = [
     period: 'Apr 2025 — Present',
     role: 'Senior Software Engineer',
     company: 'AON Minet',
-    tags: ['Microservices', 'Event-Driven Architecture', 'Claims Automation', 'Hospital Integrations']
+    tags: ['Microservices', 'Event-Driven Architecture', 'Claims Automation', 'Hospital Integrations'],
+    status: 'current'
   },
   {
     period: 'May 2023 — Mar 2025',
     role: 'Digital Health Software Engineer',
     company: 'IntelliSOFT',
-    tags: ['OpenMRS EMR', 'HL7 FHIR Interoperability', 'DHIS2', 'LLM Healthcare Integrations']
+    tags: ['OpenMRS EMR', 'HL7 FHIR Interoperability', 'DHIS2', 'LLM Healthcare Integrations'],
+    status: 'recent'
   },
   {
     period: 'Nov 2022 — Apr 2023',
     role: 'FullStack Engineer',
     company: 'Jubilee Health Insurance',
-    tags: ['Digital Health Wellness Apps', 'Cross-platform Mobile & Web']
+    tags: ['Digital Health Wellness Apps', 'Cross-platform Mobile & Web'],
+    status: 'past'
   },
   {
     period: 'Jul 2021 — Oct 2022',
     role: 'Software Engineer',
     company: 'UBIQPay',
-    tags: ['Payment Gateways: M-Pesa, Tingg, Airtel, MTN MoMo', 'Gaming/Lottery Backend']
+    tags: ['Payment Gateways: M-Pesa, Tingg, Airtel, MTN MoMo', 'Gaming/Lottery Backend'],
+    status: 'past'
   },
   {
     period: 'Jan 2020 — Jun 2021',
     role: 'Software Engineer',
     company: 'LCT Africa',
-    tags: ['eClaims Processing', 'Healthcare Administration', 'HMIS Integrations: Care2000, Kranium, Med360']
+    tags: ['eClaims Processing', 'Healthcare Administration', 'HMIS Integrations: Care2000, Kranium, Med360'],
+    status: 'past'
   },
   {
     period: 'May 2018 — Dec 2019',
     role: 'FullStack Developer',
     company: 'Compulynx',
-    tags: ['COMPAS Biometric Platform', 'Equity Bank Kenya & Post Bank Uganda']
+    tags: ['COMPAS Biometric Platform', 'Equity Bank Kenya & Post Bank Uganda'],
+    status: 'past'
   },
   {
     period: 'Oct 2016 — Apr 2018',
     role: 'Software Developer',
     company: 'African Academy of Sciences',
-    tags: ['Community of Practice Research Platforms']
+    tags: ['Community of Practice Research Platforms'],
+    status: 'past'
   },
   {
     period: 'May 2015 — Sept 2016',
     role: 'Junior Software Developer',
-    company: 'Moringa School'
+    company: 'Moringa School',
+    status: 'past'
   },
 ];
 
 const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: 'Programming Languages',
+    icon: Code2,
     skills: ['Java', 'Python', 'Javascript', 'TypeScript']
   },
   {
     title: 'Frameworks & Libraries',
+    icon: Layers,
     skills: ['Spring Boot', 'React', 'React Native', 'Angular', 'Django']
   },
   {
     title: 'Databases',
+    icon: Database,
     skills: ['MySQL', 'PostgreSQL', 'ElasticSearch', 'Redis']
   },
   {
     title: 'DevOps & Tools',
+    icon: Terminal,
     skills: ['Docker', 'CI/CD Pipelines', 'GitHub', 'Git', 'Vite', 'Maven', 'OpenMRS', 'FHIR', 'HL7', 'Health Information Systems']
   },
   {
     title: 'Cloud Tools',
+    icon: Cloud,
     skills: ['AWS', 'Digital Ocean', 'Google Cloud Platform(GCP)']
   },
   {
     title: 'Agile & Leadership',
-    skills: ['Scrum', 'Project Management', 'Agile Development', 'Team Leadership']
-  }
+    icon: Users,
+    skills: ['Scrum', 'Kanban', 'Mentorship', 'Technical Leadership', 'Code Reviews', 'Cross-team Collaboration']
+  },
 ];
 
 const SOCIAL_LINKS = {
@@ -339,16 +362,15 @@ const XIcon = ({ size = 24, className = "" }: { size?: number; className?: strin
   </svg>
 );
 
-const SectionHeading = ({ eyebrow, title, dark = false }: { eyebrow: string; title: string; dark?: boolean }) => (
+const SectionHeading = ({ eyebrow, title }: { eyebrow: string; title: string }) => (
   <div className="text-center mb-16">
-    <span className={`inline-block px-3 py-1 rounded-full font-mono text-xs uppercase tracking-widest mb-4 border ${
-      dark ? 'bg-[#2DD4BF]/10 border-[#2DD4BF]/20 text-[#2DD4BF]' : 'bg-[#0D9488]/10 border-[#0D9488]/20 text-[#0D9488]'
-    }`}>
+    <span className="block text-[var(--color-madafu-gold-light)] uppercase tracking-[0.4em] text-xs font-bold mb-4">
       {eyebrow}
     </span>
-    <h3 className={`text-3xl md:text-4xl font-bold tracking-tight ${dark ? 'text-white' : 'text-slate-900'}`}>
+    <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
       {title}
     </h3>
+    <div className="w-24 h-1 bg-[var(--color-madafu-gold)] mx-auto mt-6" />
   </div>
 );
 
@@ -356,11 +378,11 @@ const FlowDiagram = ({ steps }: { steps: string[] }) => (
   <div className="flex flex-col md:flex-row items-stretch gap-2 md:gap-0">
     {steps.map((step, i) => (
       <Fragment key={step}>
-        <div className="flex-1 flex items-center justify-center px-4 py-3 rounded-lg bg-slate-800/60 border border-slate-700 text-center text-sm font-medium text-slate-200 transition-colors duration-300 hover:border-teal-500/40">
+        <div className="flex-1 flex items-center justify-center px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-center text-sm font-medium text-gray-200 transition-colors duration-300 hover:border-[var(--color-madafu-gold-light)]/40">
           {step}
         </div>
         {i < steps.length - 1 && (
-          <div className="flex items-center justify-center text-slate-500 py-1 md:px-2 rotate-90 md:rotate-0">
+          <div className="flex items-center justify-center text-gray-500 py-1 md:px-2 rotate-90 md:rotate-0">
             <ArrowRight size={16} />
           </div>
         )}
@@ -384,8 +406,8 @@ const App: React.FC = () => {
   // Scroll listener for sticky header and scroll-to-top button
   useEffect(() => {
     applySEO({
-      title: 'Nelson Kimaiga | Senior Software & Systems Engineer',
-      description: '11+ years of experience designing, building, and deploying scalable enterprise software across backend architectures, payment switches, cloud infrastructure, and digital health.',
+      title: 'Nelson Kimaiga | Senior Enterprise & Systems Engineer',
+      description: 'Senior software and systems engineer with 11+ years delivering production systems across fintech, InsurTech, and digital health — high-throughput backends and critical middleware.',
       robots: 'index, follow',
     });
   }, []);
@@ -423,29 +445,30 @@ const App: React.FC = () => {
     <ul className={`${mobile
       ? 'flex flex-col gap-6 text-xl items-center py-20'
       : 'hidden md:flex gap-6 items-center text-xs font-bold uppercase tracking-widest text-white'}`}>
-      <li className="hover:text-[#2DD4BF] transition-colors"><a href="#home" onClick={() => setIsMenuOpen(false)}>Home</a></li>
-      <li className="hover:text-[#2DD4BF] transition-colors"><a href="#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
-      <li className="hover:text-[#2DD4BF] transition-colors"><a href="#experience" onClick={() => setIsMenuOpen(false)}>Experience</a></li>
-      <li className="hover:text-[#2DD4BF] transition-colors"><a href="#works" onClick={() => setIsMenuOpen(false)}>Projects</a></li>
-      <li className="hover:text-[#2DD4BF] transition-colors">
+      <li className="hover:text-[var(--color-madafu-gold-light)] transition-colors"><a href="#home" onClick={() => setIsMenuOpen(false)}>Home</a></li>
+      <li className="hover:text-[var(--color-madafu-gold-light)] transition-colors"><a href="#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
+      <li className="hover:text-[var(--color-madafu-gold-light)] transition-colors"><a href="#health" onClick={() => setIsMenuOpen(false)}>Domains</a></li>
+      <li className="hover:text-[var(--color-madafu-gold-light)] transition-colors"><a href="#experience" onClick={() => setIsMenuOpen(false)}>Experience</a></li>
+      <li className="hover:text-[var(--color-madafu-gold-light)] transition-colors"><a href="#works" onClick={() => setIsMenuOpen(false)}>Projects</a></li>
+      <li className="hover:text-[var(--color-madafu-gold-light)] transition-colors">
         <a href="https://blog.nelsonkimaiga.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>Blog</a>
       </li>
-      <li className="hover:text-[#2DD4BF] transition-colors"><a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
+      <li className="hover:text-[var(--color-madafu-gold-light)] transition-colors"><a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
     </ul>
   );
 
   return (
-    <div className="font-sans text-slate-400 antialiased overflow-x-hidden bg-slate-950">
+    <div className="font-sans text-gray-400 antialiased overflow-x-hidden bg-black selection:bg-[var(--color-madafu-gold)] selection:text-white">
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-[2000] transition-all duration-500 px-6 py-4 flex justify-between items-center ${
-        isSticky ? 'bg-[#0A1128]/90 backdrop-blur-md py-2 shadow-lg border-b border-teal-400/20' : 'bg-transparent'
+        isSticky ? 'bg-black/80 backdrop-blur-md py-2 shadow-lg border-b border-[var(--color-madafu-gold-light)]/20' : 'bg-transparent'
       }`}>
         <a href="#home" className="block">
-          <div className={`rounded-full border-2 border-[#2DD4BF] overflow-hidden bg-white transition-all duration-500 ${
-            isSticky ? 'w-10 h-10 ring-2 ring-white/20 ring-offset-2 ring-offset-[#0A1128]' : 'w-16 h-16'
+          <div className={`rounded-full border-2 border-[var(--color-madafu-gold-light)] overflow-hidden bg-white transition-all duration-500 ${
+            isSticky ? 'w-10 h-10 ring-2 ring-white/20 ring-offset-2 ring-offset-black' : 'w-16 h-16'
           }`}>
              <img
-              src="https://ui-avatars.com/api/?name=Nelson+Kimaiga&background=00196F&color=7afbc4"
+              src="https://ui-avatars.com/api/?name=Nelson+Kimaiga&background=D4AF37&color=000000"
               alt="Nelson Kimaiga"
               className="w-full h-full object-cover"
             />
@@ -462,44 +485,50 @@ const App: React.FC = () => {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-[1999] bg-[#0A1128] text-white transition-transform duration-500 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
+      <div className={`fixed inset-0 z-[1999] bg-black text-white transition-transform duration-500 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
         <NavLinks mobile />
       </div>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen bg-[#0A1128] flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+      <section id="home" className="relative min-h-screen bg-black flex flex-col items-center justify-center text-center px-4 overflow-hidden">
         {/* Atmospheric Light Background */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-blue-500/15 via-teal-400/10 to-blue-600/15 rounded-full blur-[140px] animate-pulse" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-to-r from-blue-500/15 via-[var(--color-madafu-gold-light)]/10 to-blue-600/15 rounded-full blur-[140px] animate-pulse" />
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[100px]" />
         </div>
 
         <div className="relative z-10 animate-fadeInUp py-24">
-          <p className="text-[#2DD4BF] font-extrabold text-lg mb-2">Hello, I'm</p>
-          <h1 className="text-white text-5xl md:text-7xl lg:text-8xl font-thin uppercase tracking-tight mb-4">
+          <div className="mx-auto mb-5 h-px w-12 bg-[var(--color-madafu-gold)]" />
+          <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-thin uppercase tracking-tight mb-4">
             Nelson Kimaiga
           </h1>
-          <h2 className="text-2xl md:text-4xl text-white font-bold mb-4">
-            Senior Software & Systems Engineer
+          <h2 className="text-2xl md:text-4xl text-[var(--color-madafu-gold)] font-bold mb-6 leading-tight">
+            Senior Software Engineer
           </h2>
-          <p className="max-w-2xl mx-auto text-base md:text-lg text-slate-300 font-light leading-relaxed">
-            11+ years of experience designing, building, and deploying scalable enterprise software across backend architectures, payment switches, cloud infrastructure, and digital health.
+          <p className="max-w-3xl mx-auto text-base md:text-lg text-gray-300 font-light leading-relaxed">
+            11+ years delivering production systems across InsurTech, digital health, and fintech, high-throughput backends, and critical middleware.
           </p>
 
           {/* Domain Pills */}
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            {DOMAIN_PILLS.map((pill, i) => (
+            {DOMAIN_PILLS.map((pill) => (
               <span
                 key={pill}
-                className={`px-4 py-2 rounded-full font-mono text-sm whitespace-nowrap transition-all duration-300 ${
-                  i === 0
-                    ? 'bg-[#2DD4BF] text-slate-950 font-semibold'
-                    : 'border border-white/15 bg-white/5 text-slate-300 hover:border-[#2DD4BF]/50 hover:text-[#2DD4BF]'
-                }`}
+                className="px-4 py-2 rounded-full border border-[var(--color-madafu-gold-light)]/30 bg-[var(--color-madafu-gold)]/5 text-[var(--color-madafu-gold-light)] font-mono text-sm whitespace-nowrap transition-all duration-300 hover:bg-[var(--color-madafu-gold)]/10 hover:border-[var(--color-madafu-gold)]/40"
               >
                 {pill}
               </span>
             ))}
+          </div>
+
+          {/* Dual CTAs */}
+          <div className="mt-12 flex flex-col md:flex-row gap-4 justify-center">
+            <a href="#works" className="px-10 py-4 bg-[var(--color-madafu-gold)] text-black font-bold rounded uppercase tracking-wider hover:bg-[var(--color-madafu-gold-light)] transition-all shadow-lg shadow-black/40">
+              View Work &amp; Domains
+            </a>
+            <a href="#contact" className="px-10 py-4 border border-[var(--color-madafu-gold-light)]/40 text-[var(--color-madafu-gold-light)] font-bold rounded uppercase tracking-wider hover:bg-[var(--color-madafu-gold)]/10 transition-all">
+              Hire / Book Consult
+            </a>
           </div>
 
           <div className="flex gap-6 mt-12 justify-center">
@@ -513,52 +542,51 @@ const App: React.FC = () => {
               <XIcon size={24} className="text-white group-hover:text-black" />
             </a>
           </div>
-
-          <div className="mt-12 flex flex-col md:flex-row gap-4 justify-center">
-            <a href="#works" className="px-10 py-4 bg-[#2DD4BF] text-slate-950 font-bold rounded uppercase hover:bg-white transition-all">
-              See My Portfolio
-            </a>
-          </div>
         </div>
 
         <div className="absolute bottom-6 animate-bounce">
-          <a href="#about" aria-label="Scroll to About"><ChevronDown className="text-[#2DD4BF] w-8 h-8" /></a>
+          <a href="#about" aria-label="Scroll to About"><ChevronDown className="text-[var(--color-madafu-gold-light)] w-8 h-8" /></a>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-slate-50 text-slate-900">
+      <section id="about" className="py-24 bg-black border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <SectionHeading eyebrow="Profile" title="About Me" />
-          <p className="max-w-4xl mx-auto text-xl md:text-2xl font-light text-slate-600 text-justify leading-relaxed mb-20">
-            I’m a <span className="text-slate-900 font-semibold">Senior Software Engineer</span> based in Nairobi, Kenya, with{' '}
-            <span className="text-slate-900 font-semibold">11+ years of experience</span> building resilient web, mobile, and cloud applications. Specializing in{' '}
-            <span className="text-slate-900 font-semibold">backend architectures</span>, <span className="text-slate-900 font-semibold">DevOps</span>, and{' '}
-            <span className="text-slate-900 font-semibold">digital health solutions</span>, I focus on turning complex technical challenges into scalable, production-ready platforms. When I'm not shipping code, I'm active in the open-source community and sharing technical insights on software design and architecture.
+          <p className="max-w-4xl mx-auto text-xl md:text-2xl font-light text-gray-300 text-justify leading-relaxed mb-20">
+            I’m a <span className="text-white font-semibold">Senior Enterprise &amp; Systems Engineer</span> based in Nairobi, Kenya, with{' '}
+            <span className="text-white font-semibold">11+ years of experience</span> building resilient web, mobile, and cloud applications. Specializing in{' '}
+            <span className="text-white font-semibold">backend architectures</span>, <span className="text-white font-semibold">payment middleware</span>, and{' '}
+            <span className="text-white font-semibold">digital health solutions</span>, I focus on turning complex technical challenges into scalable, production-ready platforms. When I'm not shipping code, I'm active in the open-source community and sharing technical insights on software design and architecture.
           </p>
 
           <div className="mb-12">
-            <span className="inline-block px-6 py-2.5 bg-[#0D9488]/10 border border-[#0D9488]/20 text-[#0D9488] rounded-full font-mono text-xs uppercase tracking-widest mb-12">
+            <span className="inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--color-madafu-gold)]/10 border border-[var(--color-madafu-gold-light)]/20 text-[var(--color-madafu-gold-light)] rounded-full font-mono text-xs uppercase tracking-widest">
+              <HardHat size={14} className="text-[var(--color-madafu-gold)]" />
               Skills & Competencies
             </span>
           </div>
 
-          {/* Categorical Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+          {/* Skills Matrix */}
+          <div className="max-w-6xl mx-auto text-left">
             {SKILL_CATEGORIES.map((category) => (
               <div
                 key={category.title}
-                className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm transition-all duration-300 hover:shadow-md"
+                className="flex flex-col md:flex-row md:items-center gap-4 md:gap-10 py-6 border-b border-white/10 last:border-b-0"
               >
-                <h4 className="text-lg font-bold text-slate-900 uppercase mb-6 border-b border-slate-100 pb-2">
-                  {category.title}
-                </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="md:w-1/4 shrink-0 flex items-center gap-3">
+                  <category.icon className="w-4 h-4 text-[#D4AF37] shrink-0" />
+                  <h4 className="text-xs md:text-sm font-bold uppercase tracking-widest text-white whitespace-nowrap">
+                    {category.title}
+                  </h4>
+                </div>
+                <div className="flex-1 flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 bg-[#0D9488]/10 text-[#0D9488] text-sm font-medium rounded-md border border-[#0D9488]/20"
+                      className="px-3 py-1.5 bg-white/[0.03] border border-white/10 text-gray-300 text-sm rounded-full transition-all duration-300 hover:border-[var(--color-madafu-gold)]/40 inline-flex items-center gap-2"
                     >
+                      <Circle size={14} className="text-zinc-400 opacity-80" />
                       {skill}
                     </span>
                   ))}
@@ -570,44 +598,84 @@ const App: React.FC = () => {
       </section>
 
       {/* Career Roadmap */}
-      <section id="experience" className="py-24 bg-slate-900">
+      <section id="experience" className="py-24 bg-black border-t border-white/10">
         <div className="max-w-5xl mx-auto px-6">
-          <SectionHeading eyebrow="Career Journey" title="Career Roadmap" dark />
+          <SectionHeading eyebrow="Career Journey" title="Career Roadmap" />
 
-          <div className="relative ml-2 border-l-2 border-slate-800 pl-8 md:pl-12 space-y-8">
-            {CAREER.map((entry, idx) => (
-              <div key={`${entry.company}-${idx}`} className="relative">
-                <span className="absolute -left-[38px] md:-left-[54px] top-2 w-3 h-3 rounded-full bg-[#2DD4BF] ring-4 ring-[#2DD4BF]/25" />
-                <div className="bg-slate-800/40 border border-slate-800 rounded-xl p-6 transition-all duration-300 hover:border-teal-500/40 hover:-translate-y-1">
-                  <span className="inline-block text-xs font-bold text-[#2DD4BF] uppercase tracking-widest mb-2 font-mono">
-                    {entry.period}
-                  </span>
-                  <h4 className="text-lg md:text-xl font-bold text-white">{entry.role}</h4>
-                  <p className="text-sm text-slate-400 mb-3 flex items-center gap-2">
-                    <Building2 size={14} className="text-slate-500" />
-                    <span className="text-slate-300 font-medium">{entry.company}</span>
-                  </p>
-                  {entry.tags && entry.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {entry.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2.5 py-1 rounded-full bg-[#2DD4BF]/10 border border-[#2DD4BF]/20 text-xs text-[#2DD4BF]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+          <div className="relative">
+            <div className="absolute left-[7px] md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-gradient-to-b from-[var(--color-madafu-gold)] via-[var(--color-madafu-gold-light)]/30 to-white/10" />
+
+            <div className="space-y-10">
+              {CAREER.map((entry, idx) => {
+                const isActive = entry.status === 'current' || entry.status === 'recent';
+                const isLeft = idx % 2 === 0;
+                return (
+                  <div key={`${entry.company}-${idx}`} className="relative md:grid md:grid-cols-2 md:gap-16">
+                    {isActive && (
+                      <span className="absolute left-[7px] md:left-1/2 top-2 -translate-x-1/2 z-0 w-3.5 h-3.5 rounded-full bg-[var(--color-madafu-green)] animate-ping" />
+                    )}
+                    <span
+                      className={`absolute left-[7px] md:left-1/2 top-2 -translate-x-1/2 z-10 w-3.5 h-3.5 rounded-full ring-4 ${
+                        isActive
+                          ? 'bg-[var(--color-madafu-green)] ring-[var(--color-madafu-green)]/25'
+                          : 'bg-[var(--color-madafu-gold)] ring-[var(--color-madafu-gold)]/25'
+                      }`}
+                    />
+
+                    <div className={`pl-8 md:pl-0 md:row-start-1 ${isLeft ? 'md:pr-16' : 'md:col-start-2 md:pl-16'}`}>
+                      <div className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-md transition-all duration-300 hover:border-[var(--color-madafu-gold)]/40 hover:shadow-2xl hover:shadow-black/80 hover:-translate-y-1">
+                        <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+                          <span
+                            className={`inline-flex items-center rounded-full border ${
+                              isActive
+                                ? 'bg-[var(--color-madafu-green)]/15 text-[var(--color-madafu-green)] border-[var(--color-madafu-green)]/40'
+                                : 'bg-[var(--color-madafu-gold)]/15 text-[var(--color-madafu-gold-light)] border-[var(--color-madafu-gold-light)]/30'
+                            }`}
+                            title={entry.status === 'current' ? 'Current' : entry.status === 'recent' ? 'Recent' : 'Past'}
+                          >
+                            {entry.status === 'current' ? (
+                              <Activity size={13} />
+                            ) : entry.status === 'recent' ? (
+                              <History size={13} />
+                            ) : (
+                              <Archive size={13} />
+                            )}
+                          </span>
+                          <span className="inline-block text-xs font-bold text-[var(--color-madafu-gold-light)] uppercase tracking-widest font-mono">
+                            {entry.period}
+                          </span>
+                        </div>
+                        <h4 className="text-lg md:text-xl font-bold text-white">{entry.role}</h4>
+                        <p className="text-sm text-gray-400 mb-4 flex items-center gap-2">
+                          <Building2 size={14} className={isActive ? 'text-[var(--color-madafu-green)]' : 'text-[var(--color-madafu-gold-light)]/70'} />
+                          <span className="px-2.5 py-0.5 rounded-md bg-white/10 border border-white/10 text-gray-200 font-medium">
+                            {entry.company}
+                          </span>
+                        </p>
+                        {entry.tags && entry.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {entry.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-2.5 py-1 rounded-full bg-[var(--color-madafu-gold)]/10 border border-[var(--color-madafu-gold-light)]/20 text-xs text-[var(--color-madafu-gold-light)]"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  )}
-                </div>
-              </div>
-            ))}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Digital Health & Specialty */}
-      <section id="health" className="py-24 bg-[#F4F7F6]">
+      {/* Domain Expertise */}
+      <section id="health" className="py-24 bg-black border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading eyebrow="Domain Expertise" title="Specialist Domains" />
 
@@ -620,8 +688,8 @@ const App: React.FC = () => {
                 aria-pressed={domainTab === domain.id}
                 className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                   domainTab === domain.id
-                    ? 'bg-[#0D9488] text-white shadow-lg shadow-[#0D9488]/20'
-                    : 'bg-white border border-slate-200 text-slate-600 hover:border-[#0D9488]/40 hover:text-[#0D9488]'
+                    ? 'bg-[var(--color-madafu-green)] text-white shadow-lg shadow-[var(--color-madafu-green)]/30'
+                    : 'bg-white/5 border border-white/10 text-gray-400 hover:border-[var(--color-madafu-green)]/40 hover:text-[var(--color-madafu-green)]'
                 }`}
               >
                 {domain.label}
@@ -634,25 +702,25 @@ const App: React.FC = () => {
               {activeDomain.features.map((feature) => (
                 <div
                   key={feature.title}
-                  className="group bg-white border border-slate-200 shadow-sm rounded-xl p-8 transition-all duration-300 hover:shadow-md"
+                  className="group bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-8 transition-all duration-300 hover:border-[var(--color-madafu-gold)]/40 hover:shadow-2xl hover:shadow-black/80"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#0D9488]/10 flex items-center justify-center mb-5 text-[#0D9488]">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-madafu-gold)]/10 border border-[var(--color-madafu-gold-light)]/20 flex items-center justify-center mb-5 text-[var(--color-madafu-gold-light)]">
                     <feature.icon size={24} />
                   </div>
-                  <h4 className="text-lg font-bold text-slate-900 mb-2">{feature.title}</h4>
-                  <p className="text-sm text-slate-600 leading-relaxed">{feature.desc}</p>
+                  <h4 className="text-lg font-bold text-white mb-2">{feature.title}</h4>
+                  <p className="text-sm text-gray-300 leading-relaxed">{feature.desc}</p>
                 </div>
               ))}
             </div>
 
             {/* Domain Technology Badges */}
             <div className="mt-12 text-center">
-              <p className="text-xs uppercase tracking-widest text-slate-500 mb-5 font-bold font-mono">Technology Stack</p>
+              <p className="text-xs uppercase tracking-widest text-gray-400 mb-5 font-bold font-mono">Technology Stack</p>
               <div className="flex flex-wrap justify-center gap-3">
                 {activeDomain.badges.map((standard) => (
                   <span
                     key={standard}
-                    className="px-4 py-2 rounded-full bg-[#0D9488]/5 border border-[#0D9488]/20 text-sm text-[#0D9488] font-medium font-mono"
+                    className="px-4 py-2 rounded-full bg-[var(--color-madafu-gold)]/10 border border-[var(--color-madafu-gold-light)]/20 text-sm text-[var(--color-madafu-gold-light)] font-medium font-mono"
                   >
                     {standard}
                   </span>
@@ -664,17 +732,17 @@ const App: React.FC = () => {
       </section>
 
       {/* Projects & Case Studies */}
-      <section id="works" className="py-24 bg-slate-950">
+      <section id="works" className="py-24 bg-black border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6">
-          <SectionHeading eyebrow="Selected Work" title="Projects & Case Studies" dark />
+          <SectionHeading eyebrow="Selected Work" title="Projects & Case Studies" />
 
           {/* Tabs */}
           <div className="flex justify-center mb-12">
-            <div className="inline-flex p-1 bg-slate-900/60 border border-slate-800 rounded-full">
+            <div className="inline-flex p-1 bg-white/5 border border-white/10 rounded-full">
               <button
                 onClick={() => setActiveTab('enterprise')}
                 className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  activeTab === 'enterprise' ? 'bg-[#2DD4BF] text-slate-950 shadow-lg' : 'text-slate-400 hover:text-white'
+                  activeTab === 'enterprise' ? 'bg-[var(--color-madafu-green)] text-white shadow-lg shadow-[var(--color-madafu-green)]/30' : 'text-gray-400 hover:text-[var(--color-madafu-green)]'
                 }`}
               >
                 Enterprise Systems
@@ -682,7 +750,7 @@ const App: React.FC = () => {
               <button
                 onClick={() => setActiveTab('web')}
                 className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  activeTab === 'web' ? 'bg-[#2DD4BF] text-slate-950 shadow-lg' : 'text-slate-400 hover:text-white'
+                  activeTab === 'web' ? 'bg-[var(--color-madafu-green)] text-white shadow-lg shadow-[var(--color-madafu-green)]/30' : 'text-gray-400 hover:text-[var(--color-madafu-green)]'
                 }`}
               >
                 Web Platforms & Apps
@@ -693,22 +761,22 @@ const App: React.FC = () => {
           {activeTab === 'enterprise' ? (
             <div className="grid grid-cols-1 gap-10">
               {ENTERPRISE_CASES.map((entry) => (
-                <div key={entry.title} className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 md:p-10 transition-all duration-300 hover:border-teal-500/40">
+                <div key={entry.title} className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-10 backdrop-blur-md transition-all duration-300 hover:border-[var(--color-madafu-gold)]/40 hover:shadow-2xl hover:shadow-black/80">
                   <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8">
                     <div className="flex items-start gap-5 max-w-2xl">
-                      <div className="w-12 h-12 shrink-0 rounded-xl bg-[#2DD4BF]/10 border border-[#2DD4BF]/20 text-[#2DD4BF] flex items-center justify-center">
+                      <div className="w-12 h-12 shrink-0 rounded-xl bg-[var(--color-madafu-gold)]/10 border border-[var(--color-madafu-gold-light)]/20 text-[var(--color-madafu-gold-light)] flex items-center justify-center">
                         <entry.icon size={22} />
                       </div>
                       <div>
                         <h4 className="text-xl md:text-2xl font-bold text-white">{entry.title}</h4>
-                        <p className="text-slate-400 mt-2 text-sm md:text-base leading-relaxed">{entry.summary}</p>
+                        <p className="text-gray-300 mt-2 text-sm md:text-base leading-relaxed">{entry.summary}</p>
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-2 shrink-0">
                       {entry.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 rounded-full bg-[#2DD4BF]/10 border border-[#2DD4BF]/20 text-xs text-[#2DD4BF] font-semibold"
+                          className="px-3 py-1 rounded-full bg-[var(--color-madafu-gold)]/10 border border-[var(--color-madafu-gold-light)]/20 text-xs text-[var(--color-madafu-gold-light)] font-semibold"
                         >
                           {tech}
                         </span>
@@ -722,19 +790,19 @@ const App: React.FC = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {PROJECTS.map((project) => (
-                <div key={project.id} className="group flex flex-col bg-slate-900/80 rounded-xl border border-slate-800 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-teal-500/40">
+                <div key={project.id} className="group flex flex-col bg-white/5 rounded-xl border border-white/10 overflow-hidden backdrop-blur-md transition-all duration-300 hover:shadow-2xl hover:shadow-black/80 hover:border-[var(--color-madafu-gold)]/40">
                   <div className="relative aspect-video overflow-hidden">
                     <img
                       src={project.imageUrl}
                       alt={project.title}
                       className="w-full h-full object-contain bg-white p-6 rounded-lg transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-slate-950/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-2 bg-[#2DD4BF] text-slate-950 font-bold rounded-full transform translate-y-4 group-hover:translate-y-0 hover:scale-105 transition-all duration-300 flex items-center gap-2"
+                        className="px-6 py-2 bg-[var(--color-madafu-gold)] text-black font-bold rounded-full transform translate-y-4 group-hover:translate-y-0 hover:bg-[var(--color-madafu-gold-light)] transition-all duration-300 flex items-center gap-2"
                       >
                         View Project <ExternalLink size={16} />
                       </a>
@@ -745,7 +813,7 @@ const App: React.FC = () => {
                     <h4 className="text-lg font-bold text-white uppercase mb-1">
                       {project.title}
                     </h4>
-                    <p className="text-slate-400 text-sm mb-4">
+                    <p className="text-gray-400 text-sm mb-4">
                       {project.description}
                     </p>
 
@@ -753,7 +821,7 @@ const App: React.FC = () => {
                       {project.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-[#2DD4BF]/10 border border-[#2DD4BF]/20 rounded-full text-xs font-semibold text-[#2DD4BF]"
+                          className="px-2 py-1 bg-[var(--color-madafu-gold)]/10 border border-[var(--color-madafu-gold-light)]/20 rounded-full text-xs font-semibold text-[var(--color-madafu-gold-light)]"
                         >
                           {tech}
                         </span>
@@ -768,83 +836,88 @@ const App: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-slate-100">
+      <section id="contact" className="py-24 bg-black border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="flex flex-col justify-center">
-            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-8">Let's keep in touch</h3>
+            <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-8">Let's keep in touch</h3>
+            <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+              Open to senior engineering roles, freelance/consulting engagements, and enterprise architecture collaborations.
+            </p>
             <div className="space-y-8 text-lg text-left">
               <div className="flex items-center gap-6 group cursor-default transition-transform duration-300 hover:translate-x-1">
-                <div className="p-3 bg-white border border-slate-200 shadow-sm rounded-lg">
-                  <MapPin className="text-[#0D9488] w-6 h-6" />
+                <div className="p-3 bg-white/5 border border-white/10 rounded-lg text-[var(--color-madafu-gold-light)]">
+                  <MapPin className="w-6 h-6" />
                 </div>
-                <p className="text-slate-700">Nairobi, Kenya</p>
+                <p className="text-gray-300">Nairobi, Kenya</p>
               </div>
               <div className="flex items-center gap-6 group cursor-default transition-transform duration-300 hover:translate-x-1">
-                <div className="p-3 bg-white border border-slate-200 shadow-sm rounded-lg">
-                  <Phone className="text-[#0D9488] w-6 h-6" />
+                <div className="p-3 bg-white/5 border border-white/10 rounded-lg text-[var(--color-madafu-gold-light)]">
+                  <Phone className="w-6 h-6" />
                 </div>
-                <p className="text-slate-700">+254 721 496 346</p>
+                <p className="text-gray-300">+254 721 496 346</p>
               </div>
               <div className="flex items-center gap-6 group cursor-default transition-transform duration-300 hover:translate-x-1">
-                <div className="p-3 bg-white border border-slate-200 shadow-sm rounded-lg">
-                  <Mail className="text-[#0D9488] w-6 h-6" />
+                <div className="p-3 bg-white/5 border border-white/10 rounded-lg text-[var(--color-madafu-gold-light)]">
+                  <Mail className="w-6 h-6" />
                 </div>
-                <a href="mailto:nelson@nelsonkimaiga.com" className="text-slate-700 hover:text-[#0D9488] transition-colors">
+                <a href="mailto:nelson@nelsonkimaiga.com" className="text-gray-300 hover:text-[var(--color-madafu-gold-light)] transition-colors">
                   nelson@nelsonkimaiga.com
                 </a>
               </div>
             </div>
 
             <div className="mt-16 text-left">
-              <p className="font-bold text-slate-900 uppercase tracking-wider mb-6">I am social</p>
+              <p className="font-bold text-white uppercase tracking-wider mb-6">I am social</p>
               <div className="flex gap-8">
-                <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-slate-400 hover:text-[#0D9488] transition-colors"><Linkedin size={28} /></a>
-                <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-slate-400 hover:text-[#0D9488] transition-colors"><Github size={28} /></a>
-                <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="X" className="text-slate-400 hover:text-[#0D9488] transition-colors"><XIcon size={28} /></a>
+                <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-400 hover:text-[var(--color-madafu-gold-light)] transition-colors"><Linkedin size={28} /></a>
+                <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-400 hover:text-[var(--color-madafu-gold-light)] transition-colors"><Github size={28} /></a>
+                <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="X" className="text-gray-400 hover:text-[var(--color-madafu-gold-light)] transition-colors"><XIcon size={28} /></a>
               </div>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-10 bg-white p-10 rounded-2xl border border-slate-200 shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
-              <div className="relative">
+          <form onSubmit={handleSubmit} className="bg-black border border-white/10 rounded-2xl shadow-2xl shadow-black/60 overflow-hidden">
+            {/* Terminal Header */}
+            <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-4 py-3">
+              <span className="w-3 h-3 rounded-full bg-red-500/70" />
+              <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
+              <span className="w-3 h-3 rounded-full bg-green-500/70" />
+              <span className="ml-3 text-xs font-mono text-[var(--color-madafu-green)]">nelson@kimaiga: ~/consult$</span>
+            </div>
+
+            <div className="p-8 md:p-10 space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
                 <input
                   type="text" name="name" placeholder="Full Name" required
-                  className="bg-transparent border-b-2 border-slate-300 focus:border-[#0D9488] transition-colors outline-none px-0 py-3 w-full text-left text-slate-900 placeholder-slate-400"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 outline-none transition-colors focus:border-[var(--color-madafu-green)] focus:ring-2 focus:ring-[var(--color-madafu-green)]/20"
                   onChange={handleInputChange}
                 />
-              </div>
-              <div className="relative">
                 <input
                   type="text" name="phone" placeholder="Phone Number"
-                  className="bg-transparent border-b-2 border-slate-300 focus:border-[#0D9488] transition-colors outline-none px-0 py-3 w-full text-left text-slate-900 placeholder-slate-400"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 outline-none transition-colors focus:border-[var(--color-madafu-green)] focus:ring-2 focus:ring-[var(--color-madafu-green)]/20"
                   onChange={handleInputChange}
                 />
               </div>
-            </div>
-            <div className="relative">
               <input
                 type="email" name="email" placeholder="Email Address" required
-                className="bg-transparent border-b-2 border-slate-300 focus:border-[#0D9488] transition-colors outline-none px-0 py-3 w-full text-left text-slate-900 placeholder-slate-400"
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 outline-none transition-colors focus:border-[var(--color-madafu-green)] focus:ring-2 focus:ring-[var(--color-madafu-green)]/20"
                 onChange={handleInputChange}
               />
-            </div>
-            <div className="relative">
               <textarea
-                name="message" rows={4} placeholder="Your Message" required
-                className="bg-transparent border-b-2 border-slate-300 focus:border-[#0D9488] transition-colors outline-none px-0 py-3 w-full resize-none text-left text-slate-900 placeholder-slate-400"
+                name="message" rows={4} placeholder="Your Message — role, project scope, or consulting inquiry" required
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 outline-none transition-colors focus:border-[var(--color-madafu-green)] focus:ring-2 focus:ring-[var(--color-madafu-green)]/20 resize-none"
                 onChange={handleInputChange}
               />
+              <button type="submit" className="w-full py-4 bg-[var(--color-madafu-gold)] text-black font-bold rounded-lg uppercase tracking-wider hover:bg-[var(--color-madafu-gold-light)] transition-all shadow-lg shadow-black/40 active:scale-[0.98]">
+                Send Message
+              </button>
             </div>
-            <button type="submit" className="w-full py-4 bg-[#0D9488] text-white font-bold rounded-md uppercase tracking-wider hover:bg-[#0F766E] transition-all shadow-lg active:scale-[0.98]">
-              Talk To Me
-            </button>
           </form>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-950 py-12 text-white border-t-2 border-teal-400/30">
+      <footer className="bg-black py-12 text-white border-t-2 border-[var(--color-madafu-gold-light)]/30">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6">
           {/* Social Icons */}
           <div className="flex gap-4">
@@ -866,7 +939,7 @@ const App: React.FC = () => {
         {/* Floating Scroll-to-top button */}
         <button
           onClick={scrollToTop}
-          className={`fixed bottom-8 right-8 p-2 bg-[#2DD4BF] text-slate-950 rounded-full shadow-2xl transition-all duration-300 hover:bg-white hover:scale-110 z-50 border border-white/20 ${
+          className={`fixed bottom-8 right-8 p-2 bg-[var(--color-madafu-gold)] text-black rounded-full shadow-2xl transition-all duration-300 hover:bg-[var(--color-madafu-gold-light)] hover:scale-110 z-50 border border-white/20 ${
             showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
           }`}
           aria-label="Scroll to top"

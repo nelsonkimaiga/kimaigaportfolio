@@ -2,6 +2,9 @@
 
 @theme {
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --color-madafu-gold: #D4AF37;
+  --color-madafu-gold-light: #E5C158;
+  --color-madafu-green: #00A86B;
 }
 
 @layer base {
