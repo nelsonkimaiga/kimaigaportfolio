@@ -268,12 +268,12 @@ const CAREER: CareerEntry[] = [
   {
     period: '2023 — 2025',
     company: 'IntelliSOFT',
-    headline: 'Digital Health Interoperability & LLM Integration',
+    headline: 'Digital Health Interoperability & AI-Assisted Clinical Workflows',
     summary: [
       'Engineered OpenMRS EMR interoperability over HL7 FHIR and DHIS2.',
-      'Bridged clinical systems with LLM-powered healthcare workflows.',
+      'Bridged clinical systems with AI-assisted clinical workflows.',
     ],
-    tags: ['OpenMRS', 'HL7', 'FHIR', 'DHIS2', 'LLM Healthcare Integrations'],
+    tags: ['OpenMRS', 'HL7', 'FHIR', 'DHIS2', 'AI-Assisted Clinical Workflows'],
     status: 'recent'
   },
   {
@@ -337,7 +337,12 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: 'DevOps & Tools',
     icon: Terminal,
-    skills: ['Docker', 'CI/CD Pipelines', 'GitHub', 'Git', 'Vite', 'Maven', 'OpenMRS', 'FHIR', 'HL7', 'Health Information Systems']
+    skills: ['Docker', 'CI/CD Pipelines', 'GitHub', 'Git', 'Vite', 'Maven']
+  },
+  {
+    title: 'Health Informatics',
+    icon: HeartPulse,
+    skills: ['FHIR', 'HL7', 'OpenMRS', 'DHIS2', 'OpenHIE', 'HAPI FHIR', 'Health Information Systems']
   },
   {
     title: 'Cloud Tools',
@@ -416,7 +421,7 @@ const App: React.FC = () => {
   useEffect(() => {
     applySEO({
       title: 'Nelson Kimaiga | Senior Software Engineer',
-      description: 'Senior software and systems engineer with 11+ years delivering production systems across fintech, InsurTech, and digital health — high-throughput backends and critical middleware.',
+      description: 'Senior software and systems engineer with 11+ years designing and delivering production-grade software systems across fintech, InsurTech, and digital health — high-throughput backends and critical middleware.',
       robots: 'index, follow',
     });
   }, []);
@@ -512,10 +517,10 @@ const App: React.FC = () => {
             Nelson Kimaiga
           </h1>
           <h2 className="text-2xl md:text-4xl text-[var(--color-madafu-gold)] font-bold mb-6 leading-tight">
-            Software Engineer specializing in Backend Systems, Digital Health &amp; Systems Integration.
+            Enterprise Software Engineer building scalable systems across Digital Health, FinTech and InsurTech.
           </h2>
           <p className="max-w-3xl mx-auto text-base md:text-lg text-gray-300 font-light leading-relaxed">
-            11+ years delivering production systems across InsurTech, digital health, and fintech, high-throughput backends, and critical middleware.
+            11+ years designing and delivering production-grade software systems across InsurTech, digital health, and fintech, high-throughput backends, and critical middleware.
           </p>
 
           {/* Domain Pills */}
@@ -567,7 +572,7 @@ const App: React.FC = () => {
             I’m a <span className="text-white font-semibold">Senior Software Engineer</span> based in Nairobi, Kenya, with{' '}
             <span className="text-white font-semibold">11+ years of experience</span> building resilient web, mobile, and cloud applications. Specializing in{' '}
             <span className="text-white font-semibold">backend architectures</span>, <span className="text-white font-semibold">payment middleware</span>, and{' '}
-            <span className="text-white font-semibold">digital health solutions</span>, I focus on turning complex technical challenges into scalable, production-ready platforms. When I'm not shipping code, I'm active in the open-source community and sharing technical insights on software design and architecture.
+            <span className="text-white font-semibold">digital health solutions</span>, I focus on turning complex technical challenges into scalable, production-ready platforms. Beyond software delivery, I'm passionate about engineering practices that improve maintainability, system reliability, and developer experience, while actively contributing to open-source communities and technical knowledge sharing.
           </p>
 
           <div className="mb-12">
