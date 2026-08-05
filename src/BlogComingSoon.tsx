@@ -1,11 +1,13 @@
 import React from 'react';
-import { Newspaper, Linkedin, Github } from 'lucide-react';
+import { Newspaper, Linkedin, Github, ArrowUpRight } from 'lucide-react';
 
 const SOCIAL_LINKS = {
   linkedin: 'https://linkedin.com/in/nelsonkimaiga',
   github: 'https://github.com/nelsonkimaiga',
   twitter: 'https://twitter.com/nelsonkimaiga',
 };
+
+const MAIN_SITE_URL = 'https://nelsonkimaiga.com';
 
 const XIcon = ({ size = 20, className = '' }: { size?: number; className?: string }) => (
   <svg
