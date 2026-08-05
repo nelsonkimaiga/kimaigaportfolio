@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Newspaper, Linkedin, Github, ArrowUpRight } from 'lucide-react';
+import { applySEO } from './seo';
 
 const SOCIAL_LINKS = {
   linkedin: 'https://linkedin.com/in/nelsonkimaiga',
@@ -25,7 +26,11 @@ const BlogComingSoon: React.FC = () => {
   const year = new Date().getFullYear();
 
   useEffect(() => {
-    document.title = "The Rhapsody | A developer's shenanigans";
+    applySEO({
+      title: "The Rhapsody | A developer's shenanigans",
+      description: "The Rhapsody — Nelson Kimaiga's developer blog, coming soon.",
+      robots: 'noindex, follow',
+    });
   }, []);
 
   return (

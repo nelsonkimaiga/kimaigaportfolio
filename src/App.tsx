@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { applySEO } from './seo';
 import {
   Linkedin,
   Github,
@@ -141,41 +142,6 @@ const XIcon = ({ size = 24, className = "" }: { size?: number; className?: strin
   </svg>
 );
 
-const TypingEffect = () => {
-  const [text, setText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(150);
-
-  const phrases = ["a Versatile Software Engineer"];
-
-  useEffect(() => {
-    const handleTyping = () => {
-      const i = loopNum % phrases.length;
-      const fullText = phrases[i];
-
-      setText(isDeleting
-        ? fullText.substring(0, text.length - 1)
-        : fullText.substring(0, text.length + 1)
-      );
-
-      setTypingSpeed(isDeleting ? 30 : 150);
-
-      if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), 1000);
-      } else if (isDeleting && text === '') {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed]);
-
-  return <span className="text-[#7afbc4] border-r-2 border-[#7afbc4] animate-pulse">{text}</span>;
-};
-
 // --- Main Component ---
 
 const App: React.FC = () => {
@@ -185,6 +151,14 @@ const App: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
 
   // Scroll listener for sticky header and scroll-to-top button
+  useEffect(() => {
+    applySEO({
+      title: 'Nelson Kimaiga | Senior Software & Systems Engineer',
+      description: '11+ years of experience designing, building, and deploying scalable enterprise software across backend architectures, cloud infrastructure, and digital health.',
+      robots: 'index, follow',
+    });
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 50);
@@ -272,9 +246,12 @@ const App: React.FC = () => {
           <h1 className="text-white text-5xl md:text-8xl font-thin uppercase tracking-tight mb-4">
             Nelson Kimaiga
           </h1>
-          <h2 className="text-xl md:text-3xl text-white font-light">
-            I am <TypingEffect />
+          <h2 className="text-2xl md:text-4xl text-white font-light mb-4">
+            Senior Software & Systems Engineer
           </h2>
+          <p className="max-w-2xl mx-auto text-base md:text-lg text-gray-300 font-light leading-relaxed">
+            11+ years designing, building, and deploying scalable enterprise platforms across backend systems, cloud infrastructure, and digital health.
+          </p>
 
           <div className="flex gap-6 mt-12 justify-center">
             <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-white transition-all group">
@@ -357,9 +334,11 @@ const App: React.FC = () => {
       <section id="about" className="py-24 bg-[#2a2d38] text-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h3 className="text-4xl md:text-5xl font-light uppercase text-[#7afbc4] mb-8">About Me</h3>
-          <p className="max-w-4xl mx-auto text-xl md:text-2xl font-light text-gray-400 leading-relaxed mb-20">
-            I’m a <span className="text-white font-medium">Software Engineer</span> based in Nairobi, Kenya,
-            building robust solutions for Web and Mobile platforms while advocating for open-source and modern software engineering practices.
+          <p className="max-w-4xl mx-auto text-xl md:text-2xl font-light text-gray-400 text-justify leading-relaxed mb-20">
+            I’m a <span className="text-white font-medium">Senior Software Engineer</span> based in Nairobi, Kenya, with{' '}
+            <span className="text-white font-medium">11+ years of experience</span> building resilient web, mobile, and cloud applications. Specializing in{' '}
+            <span className="text-white font-medium">backend architectures</span>, <span className="text-white font-medium">DevOps</span>, and{' '}
+            <span className="text-white font-medium">digital health solutions</span>, I focus on turning complex technical challenges into scalable, production-ready platforms. When I'm not shipping code, I'm active in the open-source community and sharing technical insights on software design and architecture.
           </p>
 
           <div className="mb-12">
