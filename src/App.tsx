@@ -59,9 +59,10 @@ interface EnterpriseCase {
 
 interface CareerEntry {
   period: string;
-  role: string;
   company: string;
-  tags?: string[];
+  headline: string;
+  summary: string[];
+  tags: string[];
   status: 'current' | 'recent' | 'past';
 }
 
@@ -254,58 +255,65 @@ const DOMAINS: Domain[] = [
 
 const CAREER: CareerEntry[] = [
   {
-    period: 'Apr 2025 — Present',
-    role: 'Senior Software Engineer',
+    period: '2025 — Present',
     company: 'AON Minet',
-    tags: ['Microservices', 'Event-Driven Architecture', 'Claims Automation', 'Hospital Integrations'],
+    headline: 'InsurTech & Underwriting Automation',
+    summary: [
+      'Refactoring legacy underwriting flows into event-driven microservices for higher throughput and resilience.',
+      'Automating claims processing end-to-end with hospital systems integration.',
+    ],
+    tags: ['Spring Boot', 'Redis', 'Microservices', 'Event-Driven Architecture', 'Claims Automation', 'Hospital Integrations'],
     status: 'current'
   },
   {
-    period: 'May 2023 — Mar 2025',
-    role: 'Digital Health Software Engineer',
+    period: '2023 — 2025',
     company: 'IntelliSOFT',
-    tags: ['OpenMRS EMR', 'HL7 FHIR Interoperability', 'DHIS2', 'LLM Healthcare Integrations'],
+    headline: 'Digital Health Interoperability & LLM Integration',
+    summary: [
+      'Engineered OpenMRS EMR interoperability over HL7 FHIR and DHIS2.',
+      'Bridged clinical systems with LLM-powered healthcare workflows.',
+    ],
+    tags: ['OpenMRS', 'HL7', 'FHIR', 'DHIS2', 'LLM Healthcare Integrations'],
     status: 'recent'
   },
   {
-    period: 'Nov 2022 — Apr 2023',
-    role: 'FullStack Engineer',
+    period: '2022 — 2023',
     company: 'Jubilee Health Insurance',
-    tags: ['Digital Health Wellness Apps', 'Cross-platform Mobile & Web'],
+    headline: 'Digital Health Mobility',
+    summary: ['Shipped cross-platform wellness apps expanding member engagement on mobile and web.'],
+    tags: ['React Native', 'Cross-platform', 'Web', 'Digital Health'],
     status: 'past'
   },
   {
-    period: 'Jul 2021 — Oct 2022',
-    role: 'Software Engineer',
+    period: '2021 — 2022',
     company: 'UBIQPay',
-    tags: ['Payment Gateways: M-Pesa, Tingg, Airtel, MTN MoMo', 'Gaming/Lottery Backend'],
+    headline: 'FinTech & Multi-Country Payment Middleware',
+    summary: ['Built multi-country payment middleware orchestrating M-Pesa, Tingg, Airtel, and MTN MoMo.'],
+    tags: ['Payment Gateways', 'M-Pesa', 'Tingg', 'Airtel', 'MTN MoMo', 'Gaming/Lottery Backend'],
     status: 'past'
   },
   {
-    period: 'Jan 2020 — Jun 2021',
-    role: 'Software Engineer',
+    period: '2020 — 2021',
     company: 'LCT Africa',
-    tags: ['eClaims Processing', 'Healthcare Administration', 'HMIS Integrations: Care2000, Kranium, Med360'],
+    headline: 'Healthcare Administration & HMIS Integration',
+    summary: ['Automated eClaims processing and HMIS integrations across Care2000, Kranium, and Med360.'],
+    tags: ['eClaims', 'HMIS', 'Care2000', 'Kranium', 'Med360'],
     status: 'past'
   },
   {
-    period: 'May 2018 — Dec 2019',
-    role: 'FullStack Developer',
+    period: '2018 — 2019',
     company: 'Compulynx',
-    tags: ['COMPAS Biometric Platform', 'Equity Bank Kenya & Post Bank Uganda'],
+    headline: 'Digital Identity Automation & Core Banking Systems',
+    summary: ['Delivered the COMPAS biometric identity platform for Equity Bank Kenya and Post Bank Uganda.'],
+    tags: ['COMPAS', 'Biometric Identity', 'Core Banking', 'Equity Bank Kenya', 'Post Bank Uganda'],
     status: 'past'
   },
   {
-    period: 'Oct 2016 — Apr 2018',
-    role: 'Software Developer',
-    company: 'African Academy of Sciences',
-    tags: ['Community of Practice Research Platforms'],
-    status: 'past'
-  },
-  {
-    period: 'May 2015 — Sept 2016',
-    role: 'Junior Software Developer',
-    company: 'Moringa School',
+    period: '2015 — 2018',
+    company: 'Moringa School & AAS',
+    headline: 'Internal Business Systems & Foundation Engineering',
+    summary: ['Built internal business systems and research community platforms, laying the engineering foundation.'],
+    tags: ['Community of Practice', 'Research Platforms', 'Internal Systems'],
     status: 'past'
   },
 ];
@@ -504,7 +512,7 @@ const App: React.FC = () => {
             Nelson Kimaiga
           </h1>
           <h2 className="text-2xl md:text-4xl text-[var(--color-madafu-gold)] font-bold mb-6 leading-tight">
-            Senior Software Engineer
+            Software Engineer specializing in Backend Systems, Digital Health &amp; Systems Integration.
           </h2>
           <p className="max-w-3xl mx-auto text-base md:text-lg text-gray-300 font-light leading-relaxed">
             11+ years delivering production systems across InsurTech, digital health, and fintech, high-throughput backends, and critical middleware.
@@ -599,73 +607,81 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Career Roadmap */}
+      {/* Engineering Evolution Timeline */}
       <section id="experience" className="py-24 bg-black border-t border-white/10">
         <div className="max-w-5xl mx-auto px-6">
-          <SectionHeading eyebrow="Career Journey" title="Career Roadmap" />
+          <SectionHeading eyebrow="Career Journey" title="Career Journey" />
 
           <div className="relative">
-            <div className="absolute left-[7px] md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-gradient-to-b from-[var(--color-madafu-gold)] via-[var(--color-madafu-gold-light)]/30 to-white/10" />
+            <div className="absolute left-1 top-0 bottom-0 w-0.5 md:left-1/2 md:-translate-x-1/2 bg-gradient-to-b from-[var(--color-madafu-gold)] via-[var(--color-madafu-gold-light)]/30 to-white/10" />
 
-            <div className="space-y-10">
+            <div className="space-y-12">
               {CAREER.map((entry, idx) => {
                 const isActive = entry.status === 'current' || entry.status === 'recent';
                 const isLeft = idx % 2 === 0;
                 return (
                   <div key={`${entry.company}-${idx}`} className="relative md:grid md:grid-cols-2 md:gap-16">
-                    {isActive && (
-                      <span className="absolute left-[7px] md:left-1/2 top-2 -translate-x-1/2 z-0 w-3.5 h-3.5 rounded-full bg-[var(--color-madafu-green)] animate-ping" />
-                    )}
-                    <span
-                      className={`absolute left-[7px] md:left-1/2 top-2 -translate-x-1/2 z-10 w-3.5 h-3.5 rounded-full ring-4 ${
-                        isActive
-                          ? 'bg-[var(--color-madafu-green)] ring-[var(--color-madafu-green)]/25'
-                          : 'bg-[var(--color-madafu-gold)] ring-[var(--color-madafu-gold)]/25'
-                      }`}
-                    />
+                    {/* Glowing radar node */}
+                    <span className="absolute left-[5px] md:left-1/2 top-1 -translate-x-1/2 z-10 w-5 h-5">
+                      <span
+                        className={`absolute inset-0 rounded-full ${
+                          isActive ? 'bg-[var(--color-madafu-green)]/30 animate-ping' : 'bg-[#D4AF37]/15'
+                        }`}
+                      />
+                      <span
+                        className={`relative block w-5 h-5 rounded-full ring-4 ${
+                          isActive
+                            ? 'bg-[var(--color-madafu-green)] ring-[var(--color-madafu-green)]/20'
+                            : 'bg-[#D4AF37] ring-[#D4AF37]/15'
+                        }`}
+                      />
+                    </span>
 
-                    <div className={`pl-8 md:pl-0 md:row-start-1 ${isLeft ? 'md:pr-16' : 'md:col-start-2 md:pl-16'}`}>
-                      <div className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-md transition-all duration-300 hover:border-[var(--color-madafu-gold)]/40 hover:shadow-2xl hover:shadow-black/80 hover:-translate-y-1">
-                        <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+                    <div className={`pl-10 md:pl-0 md:row-start-1 ${isLeft ? 'md:pr-20 md:text-right' : 'md:col-start-2 md:pl-20'}`}>
+                      <div className="mb-2">
+                        <span
+                          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border font-mono text-xs font-bold uppercase tracking-widest ${
+                            isActive
+                              ? 'bg-[var(--color-madafu-green)]/15 text-[var(--color-madafu-green)] border-[var(--color-madafu-green)]/40'
+                              : 'bg-[#D4AF37]/10 text-[var(--color-madafu-gold-light)] border-[var(--color-madafu-gold-light)]/30'
+                          }`}
+                          title={entry.status === 'current' ? 'Current' : entry.status === 'recent' ? 'Recent' : 'Past'}
+                        >
+                          {entry.status === 'current' ? (
+                            <Activity size={12} />
+                          ) : entry.status === 'recent' ? (
+                            <History size={12} />
+                          ) : (
+                            <Archive size={12} />
+                          )}
+                          {entry.period} · {entry.company}
+                        </span>
+                      </div>
+
+                      <h4 className="text-xl md:text-2xl font-bold text-white mb-3">{entry.headline}</h4>
+
+                      <ul className={`space-y-2 text-gray-100 font-light leading-relaxed ${isLeft ? 'md:flex md:flex-col md:items-end' : ''}`}>
+                        {entry.summary.map((point, i) => (
+                          <li key={i} className={`flex items-start gap-3 ${isLeft ? 'md:flex-row-reverse' : ''}`}>
+                            <span
+                              className={`mt-2 w-1.5 h-1.5 rounded-full shrink-0 ${
+                                isActive ? 'bg-[var(--color-madafu-green)]' : 'bg-[var(--color-madafu-gold)]'
+                              }`}
+                            />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className={`flex flex-wrap gap-2 mt-4 ${isLeft ? 'md:justify-end' : ''}`}>
+                        {entry.tags.map((tag) => (
                           <span
-                            className={`inline-flex items-center rounded-full border ${
-                              isActive
-                                ? 'bg-[var(--color-madafu-green)]/15 text-[var(--color-madafu-green)] border-[var(--color-madafu-green)]/40'
-                                : 'bg-[var(--color-madafu-gold)]/15 text-[var(--color-madafu-gold-light)] border-[var(--color-madafu-gold-light)]/30'
-                            }`}
-                            title={entry.status === 'current' ? 'Current' : entry.status === 'recent' ? 'Recent' : 'Past'}
+                            key={tag}
+                            className="px-2.5 py-1 rounded-full bg-[var(--color-madafu-gold)]/10 border border-[var(--color-madafu-gold-light)]/20 text-xs text-[var(--color-madafu-gold-light)]"
                           >
-                            {entry.status === 'current' ? (
-                              <Activity size={13} />
-                            ) : entry.status === 'recent' ? (
-                              <History size={13} />
-                            ) : (
-                              <Archive size={13} />
-                            )}
+                            {tag}
                           </span>
-                          <span className="inline-block text-xs font-bold text-[var(--color-madafu-gold-light)] uppercase tracking-widest font-mono">
-                            {entry.period}
-                          </span>
-                        </div>
-                        <h4 className="text-lg md:text-xl font-bold text-white">{entry.role}</h4>
-                        <p className="text-sm text-gray-400 mb-4 flex items-center gap-2">
-                          <Building2 size={14} className={isActive ? 'text-[var(--color-madafu-green)]' : 'text-[var(--color-madafu-gold-light)]/70'} />
-                          <span className="px-2.5 py-0.5 rounded-md bg-white/10 border border-white/10 text-gray-200 font-medium">
-                            {entry.company}
-                          </span>
-                        </p>
-                        {entry.tags && entry.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2">
-                            {entry.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="px-2.5 py-1 rounded-full bg-[var(--color-madafu-gold)]/10 border border-[var(--color-madafu-gold-light)]/20 text-xs text-[var(--color-madafu-gold-light)]"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
+                        ))}
                       </div>
                     </div>
                   </div>
