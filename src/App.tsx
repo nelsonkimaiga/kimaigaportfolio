@@ -451,27 +451,22 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="bg-slate-950 py-12 text-white border-t-2 border-[#7afbc4]">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
-          {/* Left Side: Brand */}
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <span className="text-lg font-bold tracking-tight">Nelson Kimaiga</span>
-            <div className="flex gap-4 text-sm font-medium uppercase tracking-widest">
-              <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#7afbc4] transition-colors">LinkedIn</a>
-              <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#7afbc4] transition-colors">GitHub</a>
-              <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#7afbc4] transition-colors">X</a>
-            </div>
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6">
+          {/* Social Icons */}
+          <div className="flex gap-4">
+            <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-3 bg-white/10 rounded-full text-white transition-all duration-300 hover:bg-white group">
+              <Linkedin className="w-5 h-5 group-hover:text-blue-600" />
+            </a>
+            <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-3 bg-white/10 rounded-full text-white transition-all duration-300 hover:bg-white group">
+              <Github className="w-5 h-5 group-hover:text-black" />
+            </a>
+            <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noopener noreferrer" aria-label="X" className="p-3 bg-white/10 rounded-full text-white transition-all duration-300 hover:bg-white group">
+              <XIcon size={20} className="group-hover:text-black" />
+            </a>
           </div>
 
-          {/* Right Side: Copyright & Scroll */}
-          <div className="flex flex-col items-center md:items-end gap-2 text-sm text-white-400">
-            <p>&copy; {new Date().getFullYear()} Nelson Kimaiga. All Rights Reserved.</p>
-            <button
-              onClick={scrollToTop}
-              className="text-xs uppercase tracking-widest text-white-400 hover:text-[#7afbc4] transition-colors flex items-center gap-2"
-            >
-              Back to top <ArrowUp size={12} />
-            </button>
-          </div>
+          {/* Copyright */}
+          <p className="text-sm text-white">&copy; {new Date().getFullYear()} Nelson Kimaiga. All Rights Reserved.</p>
         </div>
 
         {/* Floating Scroll-to-top button */}
