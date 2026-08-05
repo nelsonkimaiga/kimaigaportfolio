@@ -40,48 +40,39 @@ interface SkillCategory {
 const PROJECTS: Project[] = [
   {
     id: 1,
-    title: 'DOCUBOX',
+    title: 'Waragah Enterprises',
     category: 'websitework',
-    description: 'Digital Archiving System',
-    imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400',
-    link: 'https://mydocubox.org/',
-    stack: ['React', 'Node.js', 'PostgreSQL']
+    description: 'Property Management Platform',
+    imageUrl: 'https://www.waragahenterprise.co.ke/android-chrome-512x512.png',
+    link: 'https://www.waragahenterprise.co.ke/',
+    stack: ['React', 'JavaScript', 'REST API']
   },
   {
     id: 2,
     title: 'Good Financial Grant Practice',
     category: 'websitework',
     description: 'Grant Management Platform',
-    imageUrl: 'https://images.unsplash.com/photo-1454165833767-027ffea89c17?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://gfgp.ai/img/logo.png',
     link: 'https://gfgp.ai',
     stack: ['Angular', 'Spring Boot', 'MySQL']
   },
   {
     id: 3,
-    title: 'Open Research Africa',
+    title: 'DOCUBOX',
     category: 'websitework',
-    description: 'Scientific Publishing Platform',
-    imageUrl: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=400',
-    link: 'https://openresearchafrica.org/',
-    stack: ['Java', 'React', 'ElasticSearch']
+    description: 'East African Documentary Film Fund',
+    imageUrl: 'https://mydocubox.org/wp-content/uploads/2023/02/cropped-NEW-DOCUBOX-LOGO-VARIATIONS-15.png',
+    link: 'https://mydocubox.org/',
+    stack: ['React', 'Node.js', 'PostgreSQL']
   },
   {
     id: 4,
-    title: 'D3 PlayGround',
-    category: 'websitework',
-    description: 'Interactive Data Visualizations',
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bbda38a594a0?auto=format&fit=crop&q=80&w=400',
-    link: 'http://nelsonkimaiga.github.io/D3Graphs/',
-    stack: ['D3.js', 'JavaScript', 'SVG']
-  },
-  {
-    id: 5,
     title: 'Addis Ababa University',
     category: 'websitework',
     description: 'Academic Management Portal',
-    imageUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=400',
+    imageUrl: 'https://www.aau.edu.et/images/aauLogo.png',
     link: 'https://www.aau.edu.et/',
-    stack: ['Python', 'Django', 'PostgreSQL']
+    stack: ['React', 'Laravel', 'MongoDB']
   },
 ];
 
@@ -305,7 +296,7 @@ const App: React.FC = () => {
                   <img
                     src={project.imageUrl}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-contain bg-white p-6 transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-[#00196F]/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <a
