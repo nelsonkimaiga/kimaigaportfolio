@@ -327,22 +327,22 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: 'Frameworks & Libraries',
     icon: Layers,
-    skills: ['Spring Boot', 'React', 'React Native', 'Angular', 'Django']
+    skills: ['Spring Boot', 'React', 'Django']
   },
   {
     title: 'Databases',
     icon: Database,
-    skills: ['MySQL', 'PostgreSQL', 'ElasticSearch', 'Redis']
+    skills: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis']
   },
   {
     title: 'DevOps & Tools',
     icon: Terminal,
-    skills: ['Docker', 'CI/CD Pipelines', 'GitHub', 'Git', 'Vite', 'Maven']
+    skills: ['Docker', 'CI/CD Pipelines', 'Git', 'Vite', 'Maven']
   },
   {
     title: 'Health Informatics',
     icon: HeartPulse,
-    skills: ['FHIR', 'HL7', 'OpenMRS', 'DHIS2', 'OpenHIE', 'HAPI FHIR', 'Health Information Systems']
+    skills: ['FHIR', 'HL7', 'OpenMRS', 'DHIS2', 'OpenHIE']
   },
   {
     title: 'Cloud Tools',
@@ -352,7 +352,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: 'Agile & Leadership',
     icon: Users,
-    skills: ['Scrum', 'Kanban', 'Mentorship', 'Technical Leadership', 'Code Reviews', 'Cross-team Collaboration']
+    skills: ['Scrum', 'Technical Leadership', 'Code Reviews', 'Cross-team Collaboration']
   },
 ];
 
