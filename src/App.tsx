@@ -88,15 +88,15 @@ interface SkillCategory {
 }
 
 const PROJECTS: Project[] = [
-  {
-    id: 1,
-    title: 'Waragah Enterprises',
-    category: 'websitework',
-    description: 'Property Management Platform',
-    imageUrl: 'https://www.waragahenterprise.co.ke/android-chrome-512x512.png',
-    link: 'https://www.waragahenterprise.co.ke/',
-    stack: ['React', 'Spring Boot', 'Daraja REST API']
-  },
+  // {
+  //   id: 1,
+  //   title: 'Waragah Enterprises',
+  //   category: 'websitework',
+  //   description: 'Property Management Platform',
+  //   imageUrl: 'https://www.waragahenterprise.co.ke/android-chrome-512x512.png',
+  //   link: 'https://www.waragahenterprise.co.ke/',
+  //   stack: ['React', 'Spring Boot', 'Daraja REST API']
+  // },
   {
     id: 2,
     title: '4MESHEN',
